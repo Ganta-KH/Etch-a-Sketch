@@ -44,6 +44,8 @@ main {
     height: 640px;
     width: 640px;
     background-color: #F3EFE0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 footer {
