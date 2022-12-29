@@ -2,3 +2,44 @@ html, body {
     width: 100%;
     height: 100%;
 }
+
+body {
+    margin: 0;
+    background-color: #0A2647;
+    color: #F3EFE0;
+    font-family: monospace, cursive;
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    font-weight: bolder;
+    font-size: 48px;
+    text-align: center;
+    padding: 28px;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 48px;
+}
+
+.functions {
+    width: 400px;
+    height: 640px;
+    background-color: #F3EFE0;
+}
+
+.grid {
+    height: 640px;
+    width: 640px;
+    background-color: #F3EFE0;
+}
+
+footer {
+    font-size: 20px;
+    padding: 20px;
+}
