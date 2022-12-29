@@ -48,6 +48,17 @@ main {
     flex-wrap: wrap;
 }
 
+.box {
+    border: 1px solid black;
+    border-radius: 2px;
+    height: auto;
+    width: auto;
+}
+
+.box:hover {
+    background-color: black;
+}
+
 footer {
     font-size: 20px;
     padding: 20px;
