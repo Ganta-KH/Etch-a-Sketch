@@ -1,10 +1,10 @@
-// calculating and setting the size of the grid when the number of box change
+// calculating and setting the size of the grid when the number of cells change
 
-function setGridSize(grid, numberOfBox) {
+function setGridSize(grid, numberOfCells) {
     let gridSize = 640;
 
-    if (gridSize % numberOfBox != 0) {
-        gridSize += numberOfBox - (gridSize % numberOfBox);
+    if (gridSize % numberOfCells != 0) {
+        gridSize += numberOfCells - (gridSize % numberOfCells);
     }
 
     grid.style.height = `${gridSize}px`;
@@ -12,38 +12,48 @@ function setGridSize(grid, numberOfBox) {
 }
 
 
-function getDivSize(gridSize, numberOfBox) {
-    return parseInt(gridSize.slice(0, gridSize.length - 2)) / numberOfBox;
+function getCellSize(gridSize, numberOfCells) {
+    return parseInt(gridSize.slice(0, gridSize.length - 2)) / numberOfCells;
 }
 
 
-function setBoxSize(box, divSize) {
-    box.style.height = `${divSize-2}px`;
-    box.style.width = `${divSize-2}px`;
+function setCellSize(cell, cellSize) {
+    cell.style.height = `${cellSize-2}px`;
+    cell.style.width = `${cellSize-2}px`;
 }
 
 
-function generateGrid(grid, numberOfBox) {
-    setGridSize(grid, numberOfBox);
+function generateGrid(grid, numberOfCells) {
+    setGridSize(grid, numberOfCells);
     
-    for(let i = 0; i<numberOfBox**2; i++) {
+    for(let i = 0; i<numberOfCells**2; i++) {
         const div = document.createElement('div');
-        div.classList.add('box');
+        div.classList.add('cell');
         grid.appendChild(div);
     }
 
-    const box = document.querySelectorAll('.box');
-    box.forEach((b) => {
-        setBoxSize(b, getDivSize(grid.style.height, numberOfBox))
+    const cell = document.querySelectorAll('.cell');
+    cell.forEach((b) => {
+        setCellSize(b, getCellSize(grid.style.height, numberOfCells))
     })
-    
+}
 
-    
+
+function sketchBlack(cells) {
+    cells.forEach((cell) => {
+        cell.addEventListener('mouseover', () => {
+            cell.classList.add("sketch");
+        });
+    });
 }
 
 
 const grid = document.querySelector('.grid');
-generateGrid(grid, 16);
+generateGrid(grid, 32);
+const cells = document.querySelectorAll('.cell');
+sketchBlack(cells)
+
+
 
 
 
