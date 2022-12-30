@@ -9,6 +9,7 @@ function setGridSize(grid, numberOfCells) {
 
     grid.style.height = `${gridSize}px`;
     grid.style.width = `${gridSize}px`;
+    grid.style.minWidth = `${gridSize}px`;
 }
 
 
@@ -48,12 +49,14 @@ function sketchBlack(cells) {
 }
 
 
+
+
+
+
+
+
+
 const grid = document.querySelector('.grid');
 generateGrid(grid, 32);
 const cells = document.querySelectorAll('.cell');
 sketchBlack(cells)
-
-
-
-
-

@@ -30,13 +30,15 @@ main {
 .functions, .grid {
     border: 26px solid #144272;
     border-radius: 40px;
+    display: flex;
 }
 
 .functions {
     width: 400px;
     height: 640px;
     background-color: #F3EFE0;
-    
+    justify-content: center;
+    align-items: center;
 }
 
 .grid {
@@ -44,7 +46,6 @@ main {
     height: 640px;
     width: 640px;
     background-color: #F3EFE0;
-    display: flex;
     flex-wrap: wrap;
 }
 
@@ -57,6 +58,24 @@ main {
 
 .sketch {
     background-color: black;
+}
+
+button {
+    margin: 20px;
+    height: 48px;
+    width: 300px;
+    font-family: monospace, cursive;
+    background-color: #144272;
+    color: #F3EFE0;
+    font-size: 22px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: none;
+}
+
+button:hover {
+    background-color: #0A2647;
+    cursor: pointer;
 }
 
 footer {
