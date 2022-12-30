@@ -43,11 +43,18 @@ function generateGrid(grid, numberOfCells) {
 function sketchBlack(cells) {
     cells.forEach((cell) => {
         cell.addEventListener('mouseover', () => {
-            cell.classList.add("sketch");
+            cell.classList.add("black");
         });
     });
 }
 
+let boolBlack = false;
+
+function changeButtonColorOnClick(button) {
+    button.addEventListener('click', (e) => {
+        button.classList.toggle('selectButton');
+    });
+}
 
 
 
@@ -59,4 +66,9 @@ function sketchBlack(cells) {
 const grid = document.querySelector('.grid');
 generateGrid(grid, 32);
 const cells = document.querySelectorAll('.cell');
-sketchBlack(cells)
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    changeButtonColorOnClick(button);
+    sketchBlack(cells);
+})

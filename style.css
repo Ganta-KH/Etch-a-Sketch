@@ -39,6 +39,7 @@ main {
     background-color: #F3EFE0;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .grid {
@@ -56,7 +57,7 @@ main {
     width: auto;
 }
 
-.sketch {
+.black {
     background-color: black;
 }
 
@@ -71,6 +72,10 @@ button {
     font-weight: bold;
     border-radius: 10px;
     border: none;
+}
+
+.selectButton {
+    background-color: #0A2647;
 }
 
 button:hover {
