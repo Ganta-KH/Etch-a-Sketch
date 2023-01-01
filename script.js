@@ -19,8 +19,8 @@ function getCellSize(gridSize, numberOfCells) {
 
 
 function setCellSize(cell, cellSize) {
-    cell.style.height = `${cellSize-2}px`;
-    cell.style.width = `${cellSize-2}px`;
+    cell.style.height = `${cellSize-0}px`;
+    cell.style.width = `${cellSize-0}px`;
 }
 
 
@@ -40,7 +40,7 @@ function generateGrid(grid, numberOfCells) {
 }
 
 function sketchBlack(event) {
-    event.target.classList.add("black");
+    event.target.style.backgroundColor = "black";
 }
 
 function startSketchBlack(cells) {
@@ -58,7 +58,7 @@ function stopSketchBlack(cells) {
 
 
 function eraser(event) {
-    event.target.classList.remove("black");
+    event.target.style.backgroundColor = null;
 }
 
 function startEraser(cells) {
@@ -75,7 +75,28 @@ function stopEraser(cells) {
 
 function clear(cells) {
     cells.forEach((cell) => {
-        cell.classList.remove("black");
+        cell.style.backgroundColor = null;
+    })
+}
+
+
+
+function rainbowSketch(event) {
+    const red = Math.floor(Math.random() * 256);
+    const green = Math.floor(Math.random() * 256);
+    const blue = Math.floor(Math.random() * 256);
+    event.target.style.backgroundColor = 'rgb(' + [red,green,blue].join(',') + ')'; //`rgb(${red}, ${green}, ${blue});`;
+}
+
+function startRainbowSketch(cells) {
+    cells.forEach((cell) => {
+        cell.addEventListener('mouseover', rainbowSketch);
+    });
+}
+
+function stopRainbowSketch(cells) {
+    cells.forEach((cell) => {
+        cell.removeEventListener('mouseover', rainbowSketch);
     })
 }
 
@@ -86,24 +107,28 @@ function sketch(cells) {
         if (button.textContent == 'Black') {
             button.addEventListener('click', () => {
                 stopEraser(cells);
+                stopRainbowSketch(cells);
                 startSketchBlack(cells);
             });
         } else if (button.textContent == 'Rainbow') {
             button.addEventListener('click', () => {
                 stopEraser(cells);
                 stopSketchBlack(cells);
+                startRainbowSketch(cells)
             });
         } else if (button.textContent == 'Eraser') {
             button.addEventListener('click', () => {
                 stopSketchBlack(cells);
+                stopRainbowSketch(cells);
                 startEraser(cells);
             });
         } else if (button.textContent == 'Clear') {
             button.addEventListener('click', () => {
                 stopEraser(cells);
                 stopSketchBlack(cells);
+                stopRainbowSketch(cells);
                 clear(cells);
-            })
+            });
         }
     });
 }
@@ -119,7 +144,7 @@ function sketch(cells) {
 
 
 const grid = document.querySelector('.grid');
-generateGrid(grid, 32);
+generateGrid(grid, 16);
 const cells = document.querySelectorAll('.cell');
 sketch(cells)
 
