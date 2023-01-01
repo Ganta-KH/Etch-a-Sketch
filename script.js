@@ -73,6 +73,12 @@ function stopEraser(cells) {
     });
 }
 
+function clear(cells) {
+    cells.forEach((cell) => {
+        cell.classList.remove("black");
+    })
+}
+
 
 function sketch(cells) {
     const buttons = document.querySelectorAll('button');
@@ -84,12 +90,21 @@ function sketch(cells) {
             });
         } else if (button.textContent == 'Rainbow') {
             button.addEventListener('click', () => {
-                startEraser(cells)
+                stopEraser(cells);
                 stopSketchBlack(cells);
+            });
+        } else if (button.textContent == 'Eraser') {
+            button.addEventListener('click', () => {
+                stopSketchBlack(cells);
+                startEraser(cells);
+            });
+        } else if (button.textContent == 'Clear') {
+            button.addEventListener('click', () => {
+                stopEraser(cells);
+                stopSketchBlack(cells);
+                clear(cells);
             })
-        } else if (button.textContent == 'Eraser' {
-            
-        })
+        }
     });
 }
 
@@ -104,7 +119,7 @@ function sketch(cells) {
 
 
 const grid = document.querySelector('.grid');
-generateGrid(grid, 64);
+generateGrid(grid, 32);
 const cells = document.querySelectorAll('.cell');
 sketch(cells)
 
