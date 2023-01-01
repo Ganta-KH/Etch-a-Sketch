@@ -39,22 +39,62 @@ function generateGrid(grid, numberOfCells) {
     })
 }
 
+function sketchBlack(event) {
+    event.target.classList.add("black");
+}
 
-function sketchBlack(cells) {
+function startSketchBlack(cells) {
     cells.forEach((cell) => {
-        cell.addEventListener('mouseover', () => {
-            cell.classList.add("black");
-        });
+        cell.addEventListener('mouseover', sketchBlack);
     });
 }
 
-let boolBlack = false;
-
-function changeButtonColorOnClick(button) {
-    button.addEventListener('click', (e) => {
-        button.classList.toggle('selectButton');
+function stopSketchBlack(cells) {
+    cells.forEach((cell) => {
+        cell.removeEventListener('mouseover', sketchBlack);
     });
 }
+
+
+
+function eraser(event) {
+    event.target.classList.remove("black");
+}
+
+function startEraser(cells) {
+    cells.forEach((cell) => {
+        cell.addEventListener('mouseover', eraser);
+    });
+}
+
+function stopEraser(cells) {
+    cells.forEach((cell) => {
+        cell.removeEventListener('mouseover', eraser);
+    });
+}
+
+
+function sketch(cells) {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        if (button.textContent == 'Black') {
+            button.addEventListener('click', () => {
+                stopEraser(cells);
+                startSketchBlack(cells);
+            });
+        } else if (button.textContent == 'Rainbow') {
+            button.addEventListener('click', () => {
+                startEraser(cells)
+                stopSketchBlack(cells);
+            })
+        } else if (button.textContent == 'Eraser' {
+            
+        })
+    });
+}
+
+
+
 
 
 
@@ -64,11 +104,7 @@ function changeButtonColorOnClick(button) {
 
 
 const grid = document.querySelector('.grid');
-generateGrid(grid, 32);
+generateGrid(grid, 64);
 const cells = document.querySelectorAll('.cell');
-const buttons = document.querySelectorAll('button');
+sketch(cells)
 
-buttons.forEach((button) => {
-    changeButtonColorOnClick(button);
-    sketchBlack(cells);
-})
