@@ -39,14 +39,38 @@ function generateGrid(grid, numberOfCells) {
     })
 }
 
+function sketchBlack(event) {
+    event.target.classList.add("sketch");
+}
 
-function sketchBlack(cells) {
+function startSketchBlack(cells) {
     cells.forEach((cell) => {
-        cell.addEventListener('mouseover', () => {
-            cell.classList.add("sketch");
-        });
+        cell.addEventListener('mouseover', sketchBlack);
     });
 }
+
+function stopSketchBlack(cells) {
+    cells.forEach((cell) => {
+        cell.removeEventListener('mouseover', sketchBlack);
+    });
+}
+
+function sketch(cells) {
+    const buttons = document.querySelectorAll('button');
+    buttons.forEach((button) => {
+        if (button.textContent == 'Black') {
+            button.addEventListener('click', () => {
+                startSketchBlack(cells);
+            });
+        } else if (button.textContent == 'Rainbow') {
+            button.addEventListener('click', () => {
+                stopSketchBlack(cells);
+            });   
+        }
+    });
+}
+
+
 
 
 
@@ -59,4 +83,5 @@ function sketchBlack(cells) {
 const grid = document.querySelector('.grid');
 generateGrid(grid, 32);
 const cells = document.querySelectorAll('.cell');
-sketchBlack(cells)
+sketch(cells)
+

@@ -39,6 +39,7 @@ main {
     background-color: #F3EFE0;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 .grid {
