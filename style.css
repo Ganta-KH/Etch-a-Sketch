@@ -51,15 +51,13 @@ main {
 }
 
 .cell {
-    border: 1px solid black;
-    border-radius: 2px;
-    height: auto;
-    width: auto;
+    /*
+    border: 0px solid black;
+    border-radius: 0px;
+    */
+    transition: 0.4s;
 }
 
-.black {
-    background-color: black;
-}
 
 button {
     margin: 20px;
