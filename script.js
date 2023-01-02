@@ -133,6 +133,11 @@ function sketch(cells) {
     });
 }
 
+function removeDiv(cells) {
+    cells.forEach((cell) => {
+        cell.remove();
+    })
+}
 
 
 
@@ -140,11 +145,18 @@ function sketch(cells) {
 
 
 
+const slider = document.getElementById("myRange");
+const output = document.getElementById("demo");
+output.innerHTML = slider.value + ' x ' + slider.value;
 
+slider.oninput = function() {
+  output.innerHTML = slider.value + ' x ' + slider.value;
+  const cs = document.querySelectorAll('.cell');
+  removeDiv(cs);
+  const grid = document.querySelector('.grid');
+  generateGrid(grid, slider.value);
+  const cells = document.querySelectorAll('.cell');
+  sketch(cells)
+}
 
-
-const grid = document.querySelector('.grid');
-generateGrid(grid, 16);
-const cells = document.querySelectorAll('.cell');
-sketch(cells)
 
