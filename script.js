@@ -23,7 +23,7 @@ function setCellSize(cell, cellSize) {
     cell.style.width = `${cellSize-0}px`;
 }
 
-
+// function that generate the grid of divs 
 function generateGrid(grid, numberOfCells) {
     setGridSize(grid, numberOfCells);
     
@@ -39,16 +39,20 @@ function generateGrid(grid, numberOfCells) {
     })
 }
 
+
+// sketch in black color functions
 function sketchBlack(event) {
     event.target.style.backgroundColor = "black";
 }
 
+ // function that start sketching in black when the mouse hover over the grid
 function startSketchBlack(cells) {
     cells.forEach((cell) => {
         cell.addEventListener('mouseover', sketchBlack);
     });
 }
 
+// function that stop black color sketching
 function stopSketchBlack(cells) {
     cells.forEach((cell) => {
         cell.removeEventListener('mouseover', sketchBlack);
@@ -56,7 +60,7 @@ function stopSketchBlack(cells) {
 }
 
 
-
+// eraser function that eraser what have been drawn in the grid
 function eraser(event) {
     event.target.style.backgroundColor = null;
 }
@@ -73,6 +77,7 @@ function stopEraser(cells) {
     });
 }
 
+// function the clear the grid
 function clear(cells) {
     cells.forEach((cell) => {
         cell.style.backgroundColor = null;
@@ -80,7 +85,7 @@ function clear(cells) {
 }
 
 
-
+// rainbow sketching methods
 function rainbowSketch(event) {
     const red = Math.floor(Math.random() * 256);
     const green = Math.floor(Math.random() * 256);
@@ -103,6 +108,7 @@ function stopRainbowSketch(cells) {
 
 function sketch(cells) {
     const buttons = document.querySelectorAll('button');
+    
     buttons.forEach((button) => {
         if (button.textContent == 'Black') {
             button.addEventListener('click', () => {
